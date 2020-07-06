@@ -50,8 +50,12 @@ LABELS=(
 )
 
 main(){
-  echo
-  if [ "${DELETE_EXISTING_LABELS}" == "1" ]; then
+
+  echo ''
+  echo -n 'Delete existing labels? (yes/no): '
+  read -r DELETE_EXISTING_LABELS
+
+  if [ "${DELETE_EXISTING_LABELS}" == "yes" ]; then
     echo "This script will remove the default GitHub labels."
   else
     echo "This script will not remove the default GitHub labels."
@@ -88,7 +92,7 @@ main(){
   timeout 3
   echo
 
-  if [ "${DELETE_EXISTING_LABELS}" == "1" ]; then
+  if [ "${DELETE_EXISTING_LABELS}" == "yes" ]; then
     echo "Checking existing labels"
     existing_labels_strings="$(label_all)"
     # shellcheck disable=SC2207
